@@ -26,7 +26,7 @@ def _exec_transaction(transaction):
 def get_news_sentiment(year, month, day):
     try:
         # Call the 'getLotteryActive' to check lottery state.
-        sentiment = contract.functions.getSentiment(year, month, day).call()
+        sentiment = contract.functions.getNewsSentiment(year, month, day).call()
         print(f"Sentiment for {year}/{month}/{day} was {sentiment}")
         return sentiment
     except Exception as e:
@@ -34,7 +34,7 @@ def get_news_sentiment(year, month, day):
 
 
 def set_news_sentiment(year, month, day, positive, neutral, negative):
-    transaction = contract.functions.updateSentiment(
+    transaction = contract.functions.updateNewsSentiment(
         year, month, day, positive, neutral, negative
     ).build_transaction({
         'gas': 300000,                 # Gas limit.
@@ -75,6 +75,7 @@ def print_ftso_prices():
 def validate_core_functions():
     get_news_sentiment(2024, 10, 26)
     set_news_sentiment(2024, 10, 26, 2, 3, 5)
+    get_news_sentiment(2024, 10, 26)
 
 
 def main():

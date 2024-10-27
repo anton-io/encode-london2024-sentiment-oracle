@@ -23,6 +23,7 @@ RUN add-apt-repository ppa:ethereum/ethereum -y && \
 
 # Install typical contract dependencies.
 RUN npm i -g "@openzeppelin/contracts"
+RUN npm i -g "@flarenetwork/flare-periphery-contracts"
 
 # Configure entry point with option to run bash.
 WORKDIR /root

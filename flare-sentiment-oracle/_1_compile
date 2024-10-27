@@ -45,5 +45,29 @@ def contract_compile(contract=CONTRACT):
     subprocess.run(params)
 
 
+def contract_json_and_meta(contract=CONTRACT):
+    # This is used to generate <name>_meta.json that can be used to validate contracts on Block-Explorers.
+    _docker_solc()
+    params = [
+        'docker',
+        'run',
+        '-v', f"{DIR_THIS}/src:/src",
+        'solc',
+        '--base-path', '.',
+        '--include-path', 'node_modules/',
+        '--include-path', '/usr/local/lib/node_modules/',
+        '--optimize',
+        '--evm-version', 'london',
+        '-o', '/src/output',
+        '--abi', '--bin',
+        '--overwrite',
+        '--combined-json', 'abi,bin,ast,metadata,devdoc,userdoc,generated-sources,generated-sources-runtime',
+        '--metadata', '--metadata-literal',
+        f"/src/{contract}"
+    ]
+    subprocess.run(params)
+
+
 if __name__ == "__main__":
-    contract_compile()
+    # contract_compile()
+    contract_json_and_meta()
