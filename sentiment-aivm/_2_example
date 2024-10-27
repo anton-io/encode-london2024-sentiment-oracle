@@ -5,4 +5,4 @@
 # Get this file's directory.
 DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-$DIR/aivm-senti-cli/senti.py
+$DIR/aivm-senti-cli/aivm_sentiment.py

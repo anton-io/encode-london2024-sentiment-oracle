@@ -43,7 +43,7 @@ def example_bbc():
     # Fetch news feed from BBC News and display news summaries.
     rss_url_bbc = "https://feeds.bbci.co.uk/news/rss.xml"
     news = fetch_rss_feed(rss_url_bbc)
-    print(f"Results for: {news['feed']}\n\n")
+    print(f"Results for: {news['feed']}\n")
     for news in news['entries']:
         print_entry(news)
 

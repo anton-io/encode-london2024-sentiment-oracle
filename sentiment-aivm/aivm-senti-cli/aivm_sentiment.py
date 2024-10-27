@@ -29,7 +29,7 @@ def example():
     #   Message: Today is a wonderful day to build!
     # Sentiment: Positive
 
-    message   = "Today is a wonderful day to build!"
+    message   = "Bowen: Iran faces hard choices between risks of escalation or looking weak"
     sentiment = get_sentiment(message)
     print(f"  Message: {message}")
     if sentiment is not None:
