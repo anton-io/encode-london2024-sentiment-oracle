@@ -45,6 +45,33 @@ def set_news_sentiment(year, month, day, positive, neutral, negative):
     _exec_transaction(transaction)
 
 
+def print_ftso_prices():
+    ADDR_FEEDS = "0x3d893C53D9e8056135C26C8c638B76C8b60Df726"
+    ID_FEEDS = [
+        "0x01464c522f55534400000000000000000000000000",  # FLR/USD
+        "0x014254432f55534400000000000000000000000000",  # BTC/USD
+        "0x014554482f55534400000000000000000000000000",  # ETH/USD
+    ]
+    # ABI for FtsoV2
+    ABI = ('[{"inputs":[{"internalType":"bytes21[]","name":"_feedIds","type":"bytes21[]"}],"name":"getFeedsById",'
+           '"outputs":[{"internalType":"uint256[]","name":"","type":"uint256[]"},{"internalType":"int8[]","name":"","type":"int8[]"},'
+           '{"internalType":"uint64","name":"","type":"uint64"}],"stateMutability":"payable","type":"function"}]')  # noqa: E501
+
+    # Set up contract instance.
+    ftsov2 = web3.eth.contract(address=web3.to_checksum_address(ADDR_FEEDS), abi=ABI)
+
+    # Fetch current feeds.
+    feeds, decimals, timestamp = ftsov2.functions.getFeedsById(ID_FEEDS).call()
+
+    # Show results.
+    print("TimeStamp:", timestamp)
+    names = ['FLR/USD', 'BTC/USD', 'ETH/USD']
+    for i, feed in enumerate(feeds):
+        print(f"{names[i]}: {feed / 10**decimals[i]:12.5f}")
+
+    return feeds, decimals, timestamp, names
+
+
 def validate_core_functions():
     get_news_sentiment(2024, 10, 26)
     set_news_sentiment(2024, 10, 26, 2, 3, 5)
@@ -52,6 +79,8 @@ def validate_core_functions():
 
 def main():
     pass
+    # Check price feeds using FTSO.
+    # print_ftso_prices()
     # Enable/disable as a way to test:
     # validate_core_functions()
 
