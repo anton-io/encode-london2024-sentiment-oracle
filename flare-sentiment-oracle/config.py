@@ -17,7 +17,7 @@ CONTRACT_BIN  = f"{DIR_THIS}/src/output/NewsSentimentOracle.bin"
 CONTRACT_ABI  = f"{DIR_THIS}/src/output/NewsSentimentOracle.abi"
 
 # Contract's address after it has been deployed:
-CONTRACT_ADDR = f"0xa1AC5bD954aa0857F15287eC67Fee4d5587f6E04"
+CONTRACT_ADDR = f"0x72aCf8dB0e17D5A4bA9eB8176375D8F06eE3bfd0"
 
 # Load private key.
 try:
