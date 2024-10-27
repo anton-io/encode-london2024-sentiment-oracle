@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Run example that uses the AIVM Sentiment API.
+
+# Get this file's directory.
+DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+$DIR/aivm-senti-cli/senti.py

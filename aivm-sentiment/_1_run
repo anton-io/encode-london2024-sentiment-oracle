@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Run the docker container used for the AIVM Sentiment API.
+
+NAME="aivm-senti-api"
+
+# Get this file's directory.
+DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Stop image if it is currently running.
+[ "$(docker ps | grep $NAME)" ] && docker stop "$NAME"
+
+# Remove image if it does exist already.
+[ "$(docker ps -a | grep $NAME)" ] && docker rm "$NAME"
+
+# Run docker container mounting shared folder and exposing API port.
+docker run  -ti --rm --name $NAME -p 8888:8888 -v "$DIR"/aivm-senti-api/aivm_senti_api:/root/aivm_senti_api aivm-senti-api

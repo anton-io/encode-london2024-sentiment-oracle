@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Build the docker container used for the AIVM Sentiment API.
+
+# Get this file's directory.
+DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+pushd $DIR/aivm-senti-api 2>&1 > /dev/null
+
+docker build --tag aivm-senti-api .
